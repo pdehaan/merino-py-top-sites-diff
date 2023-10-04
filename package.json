@@ -1,18 +1,11 @@
 {
   "name": "merino-py-top-sites-diff",
-  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node index --color",
-    "s3": "node s3-fetcher",
-    "pretty-cache": "npx prettier .cache --write",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "version": "1.0.0",
   "author": "Peter deHaan <peter@deseloper.com>",
-  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/pdehaan/merino-py-top-sites-diff/issues"
+  },
   "dependencies": {
     "@11ty/eleventy-fetch": "^4.0.0",
     "bytes": "^3.1.2",
@@ -20,5 +13,21 @@
     "fast-xml-parser": "^4.2.5",
     "json-diff": "^1.0.6",
     "sort-json": "^2.0.1"
-  }
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/pdehaan/merino-py-top-sites-diff#readme",
+  "keywords": [],
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdehaan/merino-py-top-sites-diff.git"
+  },
+  "scripts": {
+    "pretty-cache": "npx prettier .cache --write",
+    "s3": "node s3-fetcher",
+    "start": "node index --color",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module"
 }
