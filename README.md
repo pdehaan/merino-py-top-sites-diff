@@ -43,6 +43,9 @@ Comparing https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/
 ```
 
 ## UNIQUE CATEGORIES
+
+NOTE: This will check whatever is checked into **main** not latest PR, tweak the script as needed.
+
 ```sh
 npm run categories
 ```
@@ -56,4 +59,40 @@ npm run categories
   ...
   "Weather"
 ]
+```
+
+## SUMMARY
+
+NOTE: This will check whatever is checked into **main** not latest PR, tweak the script as needed.
+
+```sh
+npm run summary
+```
+
+### SAMPLE OUTPUT
+```sh
+npm run summary | head -10
+
+> merino-py-top-sites-diff@1.0.0 summary
+> node summary
+
+[1] "Google" -- https://www.google.com
+[2] "Facebook – log in or sign up" -- https://www.facebook.com
+[3] "Microsoft – Cloud, Computers, Apps & Gaming" -- https://www.microsoft.com
+[4] "Apple" -- https://www.apple.com
+[5] "YouTube" -- https://www.youtube.com
+[6] "Twitter" -- https://twitter.com
+```
+
+## SUMMARY (BOT-check)
+
+NOTE: This will check whatever is checked into **main** not latest PR, tweak the script as needed.
+
+```sh
+npm run summary | grep -Ein "\bbot\b"
+```
+
+### SAMPLE OUTPUT
+```sh
+585:[602] "Are You A Bot?" -- https://www.joann.com
 ```
