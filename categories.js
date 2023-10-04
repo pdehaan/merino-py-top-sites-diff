@@ -1,9 +1,14 @@
-import CachedFetch from "@11ty/eleventy-fetch";
+#!/usr/bin/env node
 
-const { domains } = await CachedFetch("https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/top_picks.json", { type: "json", duration: "1d" });
+import dotenv from "dotenv";
+import * as lib from "./lib.js";
 
+dotenv.config();
+
+const domains = await lib.fetchTopPicks(process.env.PR);
 const categories = domains.reduce((acc, domain) => {
   domain.categories.forEach(cat => acc.add(cat));
   return acc;
 }, new Set());
+
 console.log(JSON.stringify(Array.from(categories).sort(), null, 2));

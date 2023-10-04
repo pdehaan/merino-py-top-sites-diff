@@ -11,6 +11,7 @@
     "bytes": "^3.1.2",
     "cli-select": "^1.1.2",
     "debug": "^4.3.4",
+    "dotenv": "^16.3.1",
     "fast-xml-parser": "^4.2.5",
     "json-diff": "^1.0.6",
     "sort-json": "^2.0.1"
@@ -26,13 +27,21 @@
     "type": "git",
     "url": "git+https://github.com/pdehaan/merino-py-top-sites-diff.git"
   },
+  "bin": {
+    "toppicks": "index.js",
+    "categories": "categories.js",
+    "summary": "summary.js"
+  },
   "scripts": {
-    "pretty-cache": "npx prettier .cache --write",
-    "s3": "node s3-fetcher",
-    "categories": "node categories",
-    "start": "node index --color",
+    "by-category": "./by-category.js 'Social Networks'",
+    "categories": "./categories.js",
     "debug": "DEBUG=top_picks:* npm start",
-    "summary": "node summary",
+    "pretty-cache": "cd .cache && npx prettier *.json --write",
+    "s3": "node s3-fetcher",
+    "start": "./index.js --color",
+    "start-debug": "DEBUG=top_picks:* npm start",
+    "summary": "./summary.js",
+    "summary-debug": "npm run summary | grep -Ei '\\bbot\\b'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module"
