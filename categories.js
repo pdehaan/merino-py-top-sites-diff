@@ -1,6 +1,6 @@
 import CachedFetch from "@11ty/eleventy-fetch";
 
-const { domains } = await CachedFetch("https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/top_picks.json", { type: "json" });
+const { domains } = await CachedFetch("https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/top_picks.json", { type: "json", duration: "1d" });
 
 const categories = domains.reduce((acc, domain) => {
   domain.categories.forEach(cat => acc.add(cat));

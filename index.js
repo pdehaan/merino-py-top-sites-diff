@@ -1,6 +1,11 @@
 import CachedFetch from "@11ty/eleventy-fetch";
 import { diffString } from "json-diff";
 import sortJson from "sort-json";
+import _debug from "debug";
+
+const debugAdd = _debug("top_picks:added");
+const debugDel = _debug("top_picks:deleted");
+
 
 import * as lib from "./s3-fetcher.js";
 
@@ -9,24 +14,27 @@ const BASE_URL = "https://merino-images.services.mozilla.com";
 // const selected = await lib.select(5);
 // const base = { key: "https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/top_picks.json" };
 
-// console.log({selected, base})
-
 await diffFiles(
   // base.key,
   // selected.key,
-  // "/1687239409000.0_top_picks.json",
-  // "/1687288535000.0_top_picks.json",
-
 
   "https://raw.githubusercontent.com/mozilla-services/merino-py/main/dev/top_picks.json",
   "https://raw.githubusercontent.com/mozilla-services/merino-py/chore-update-top-picks-03-10-2023/dev/top_picks.json",
 );
 
-async function diffFiles(...files) {
-  const [ file1, file2 ] = files;
-  const [ json1, json2 ] = await fetchFiles(...files);
+async function diffFiles(file1, file2) {
+  const [ json1, json2 ] = await fetchFiles(file1, file2);
   console.log(`Comparing ${file1}...${file2}`);
-  for (const d of Object.keys(json2)) {
+
+  const domains1 = Object.keys(json1);
+  const domains2 = Object.keys(json2);
+
+  const deleted = domains1.filter(domain => !domains2.includes(domain)).sort();
+  const added = domains2.filter(domain => !domains1.includes(domain)).sort();
+  debugAdd(JSON.stringify(added));
+  debugDel(JSON.stringify(deleted));
+
+  for (const d of domains2) {
     // Nullish coalesce since some domains might not be in both sets.
     const d1 = json1[d] ?? {};
     const d2 = json2[d] ?? {};
@@ -51,7 +59,7 @@ async function diffFiles(...files) {
 }
 
 async function fetchFiles(...files) {
-  const _files = files.sort().map(fetchTopPicks);
+  const _files = files.map(fetchTopPicks);
   return Promise.all(_files);
 }
 

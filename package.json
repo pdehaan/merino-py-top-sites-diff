@@ -10,11 +10,14 @@
     "@11ty/eleventy-fetch": "^4.0.0",
     "bytes": "^3.1.2",
     "cli-select": "^1.1.2",
+    "debug": "^4.3.4",
     "fast-xml-parser": "^4.2.5",
     "json-diff": "^1.0.6",
     "sort-json": "^2.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  },
   "homepage": "https://github.com/pdehaan/merino-py-top-sites-diff#readme",
   "keywords": [],
   "license": "MPL-2.0",
@@ -26,7 +29,9 @@
   "scripts": {
     "pretty-cache": "npx prettier .cache --write",
     "s3": "node s3-fetcher",
+    "categories": "node categories",
     "start": "node index --color",
+    "debug": "DEBUG=top_picks:* npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module"
